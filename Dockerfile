@@ -73,4 +73,4 @@ ENV DB_DIR=/mnt/databases/
 ENV DB_UR30=/mnt/databases/UniRef30_2020_06/UniRef30_2020_06
 ENV DB_BFD=/mnt/databases/bfd/
 ADD brandons-vim-rc /.vimrc
-ENTRYPOINT ["micromamba", "run", "-n", "base"]
+#ENTRYPOINT ["micromamba", "run", "-n", "base"]
