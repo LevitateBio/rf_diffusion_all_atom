@@ -56,6 +56,7 @@ RUN pip --no-cache-dir install torch torchvision torchaudio --index-url https://
 
 # Must be hardcoded for RFDiffusion
 WORKDIR /opt/rfdiffusion_all_atom
+RUN git submodule init && git submodule update
 
 #ADD install_dependencies.sh /opt/RoseTTAFold-All-Atom/install_dependencies.sh
 #RUN bash /opt/RoseTTAFold-All-Atom/install_dependencies.shADD install_dependencies.sh /opt/RoseTTAFold-All-Atom/install_dependencies.sh
