@@ -42,6 +42,11 @@ RUN apt-get update && apt-get install -y \
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
 WORKDIR /opt
 ADD . /opt/rfdiffusion_all_atom/
+
+#Download the weights
+RUN wget http://files.ipd.uw.edu/pub/RF-All-Atom/weights/RFDiffusionAA_paper_weights.pt
+RUN cp RFDiffusionAA_paper_weights.pt /opt/rfdiffusion_all_atom/
+
 # DPF torch before dgl
 # Must use -e install as we want to use schedule files from ISOG3
 RUN pip --no-cache-dir install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 \
@@ -70,8 +75,4 @@ RUN CONDA_OVERRIDE_CUDA="11.8" micromamba install -y -n base -f /opt/rf_diffusio
 
 
 #Move this to the top later
-ENV DB_DIR=/mnt/databases/
-ENV DB_UR30=/mnt/databases/UniRef30_2020_06/UniRef30_2020_06
-ENV DB_BFD=/mnt/databases/bfd/
 ADD brandons-vim-rc /.vimrc
-#ENTRYPOINT ["micromamba", "run", "-n", "base"]
